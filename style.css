@@ -1,0 +1,329 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+@font-face{
+    font-family: "circular";
+    font-weight: 500;
+    src: url("./src/circular/CircularStd-Book.woff");
+}
+:root{
+    --primary-color: #200e49;
+    --dark-mode: rgb(9, 4, 29);
+    --dark-mode-text: #f5f5f5;
+    --dark-primary-color: #2bd12b;
+    --deafult-size: 1em;
+    --default-shadow: 0 4px 6px rgba(17, 17, 19, 0.049);
+    --secondary-color: #1b1529;
+
+}
+body{
+    font-family: "circular", sans-serif, system-ui;
+    position: relative;
+    background-color: #f3f3f3;
+    color: #130b26;
+    transition: background 300ms ease-in-out;
+    height: 100vh;
+}
+body > main{
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+}
+.dark{
+    background-color: var(--dark-mode);
+    color: var(--dark-mode-text);
+}
+.tr{
+    display: flex;
+    display: -moz-box;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+}
+.fa, .far, .fab, .fad{
+    font-size: 1em;
+    color: var(--primary-color);
+}
+
+.title{
+    font-size: 1.2em;
+    font-weight: 500;
+    text-rendering: optimizeLegibility;
+}
+
+.dark .fa, .dark .fab, .dark .fad, .dark .far{
+    color: var(--dark-primary-color);
+}
+
+main > .body, main > aside{
+    height: 100%;
+    position: relative;
+}
+
+main>.body{
+    flex-direction: column;
+    justify-content: normal;
+    width: 100%;
+}
+
+main > .body > header{
+padding:20px 15px;
+box-shadow: var(--default-shadow);
+width: 100%;
+}
+
+main>.body> .counter_part{
+    flex-basis: 30%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    font-size: 2em;
+}
+main>.body>.counter_part>span{
+padding: 0 12px;
+}
+
+main>.body>footer{
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 700px;
+    padding: 15px;
+    box-shadow: var(--default-shadow);
+    border-radius: 10px;
+}
+main>.body>footer .fa{
+    color: rgba(157, 157, 160, 0.967);
+    cursor: pointer;
+}
+
+.tr.btn{
+    justify-content: center;
+    background: #d5dcd573;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: background 300ms ease;
+}
+.dark .tr.btn{
+    background-color: var(--secondary-color);
+}
+main>.body>footer>.tr:first-child{
+    opacity: 0.7;
+}
+main>.body>footer>.tr:nth-child(2) {
+    background-color: rgba(243, 87, 87, 0.446);
+}
+main>.body>footer>.tr:nth-child(2) i{
+    color: red;
+}
+main>.body>footer>.tr:nth-child(2) i[id ="pause"]{
+    color: #25b125;
+}
+
+main > aside {
+    max-width: 25vw;
+    width: 100%;
+    border-left: 1px solid #d5dcd5;
+    overflow: hidden;
+    transition: all 300ms ease-in-out;
+}
+.dark main>aside{
+background-color: var(--dark-mode);
+}
+main>aside.switch{
+    width:0;
+}
+.dark main>aside{
+    border-color: var(--secondary-color);
+}
+
+/*Modal-box*/
+.modal{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(#3d3848, #191516bd);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    opacity: 0;
+    visibility: collapse;
+    transition: all 300ms ease;
+}
+.modal.triggered{
+    opacity: 1;
+    visibility: visible;
+}
+.modal > .errorMsg{
+    position: relative;
+    max-width: 700px;
+    width: 100%;
+    height: 200px;
+    background-color: #ffffff;
+    color: #130b26;
+    border-radius: 5px;
+    box-shadow: var(--default-shadow);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    color: gray;
+    transition: all 300ms ease-in-out;
+    transform: scale(0.5);
+    opacity: 0;
+}
+.modal.triggered .errorMsg{
+    opacity: 1;
+    transform: scale(1);
+}
+.modal > .errorMsg i{
+    margin-bottom: 2rem;
+    /* opacity: 0.9; */
+    font-size: 3em;
+    color: #d03030;
+}
+.modal > .errorMsg i:not(.fa-times-circle){
+    position: absolute;
+    top: 7px;
+    right: 10px;
+    opacity: 1;
+    color: #d61d1db3;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+/*---aside-section--*/
+main>aside > header{
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+}
+main>aside>header .title::before{
+position: absolute;
+content: "";
+left: 50%;
+bottom: 0;
+transform: translateX(-50%);
+width: 25px;
+border: 2px solid var(--primary-color);
+border-radius: 10px;
+}
+
+main>aside> .record-list{
+    margin:1rem 0;
+    padding: 0;
+    position: relative;
+    height: 100%;
+    max-height: 80vh;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+main>aside>.record-list > li{
+    position: relative;
+    justify-content: normal;
+    list-style: none;
+    text-align: left;
+    align-items: flex-start;
+    margin: 1em 0;
+    padding: 0 2rem;
+}
+main>aside>.record-list > li audio{
+    visibility: collapse;
+    position: absolute;
+    z-index: -1;
+}
+
+main>aside>.record-list>li>.btn{
+    margin-right: 20px;
+    width: 27px;
+    height: 27px;
+    cursor: pointer;
+}
+main>aside>.record-list>li .btn i{
+    font-size: 0.6em;
+}
+
+main>aside>.record-list> li .text{
+    width: 100%;
+    color: #999999;
+    align-self: center;
+}
+
+main>aside>.record-list>li .text .recordTitle{
+    max-width: 300px;
+    display: block;
+    width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+main>aside>.record-list>li .text > .sublist{
+    padding: 0;
+    height: 0;
+    align-items: flex-end;
+    opacity: 0;
+    visibility: collapse;
+     transition: all 200ms ease-in-out;
+    overflow: hidden;
+}
+
+main>aside>.record-list>li .text > .sublist[data-target="true"]{
+    height: 40px;
+    opacity: 1;
+    visibility: visible;
+}
+
+main>aside>.record-list>li .text span:hover{
+    opacity: 0.7;
+}
+main>aside>.record-list>li .text > .sublist span{
+    padding: 4px;
+    font-size: 0.8em;
+    border-radius: 5px;
+    text-transform: lowercase;
+    border: 1px solid #d5dcd5;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+}
+main>aside>.record-list>li .text > .sublist span:not([data-action='rename']){
+    background:#ef5b5b;
+    color: #f3f3f3;
+    border: none;
+}
+
+@media screen and (max-width: 860px){
+ 
+    main > aside{
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 0;
+        max-width: 45vw;
+        background-color: #f3f3f3;
+        border: none;
+        box-shadow: -4px 0 4px rgba(0, 0, 0, 0.02);
+        z-index: 300;
+    }
+    main>aside.switch{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 480px){
+        main>aside{
+     max-width: 270px;
+        }
+
+}

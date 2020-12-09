@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Description" content="9ice recorder is a Hitech recorder with favourable ui rendering">
+    <title>9ice Recorder</title>
+    <link rel="stylesheet" href="src/font-awesome5/css/all.css">
+    <link rel="stylesheet" href="src/font-awesome/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="src/jquery/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+    <main class="tr">
+        <div class="body tr">
+            <header class="tr">
+                <i class="far fa-lightbulb" data-theme></i>
+
+                <span class="title">9ice-App</span>
+
+                <i class="fa fa-cog" data-settings></i>           
+            </header>
+            <div class="counter_part">
+                <span class="hr" data-hour>00</span>
+                <span class="min" data-min>00</span>
+                <span class="sec" data-secs>00</span>
+            </div>
+            <footer class="tr" data-footer>
+
+            <div class="btn tr" data-stop>
+                <i class="fa fa-stop"></i>
+            </div>
+
+                <div class="btn tr" data-record-button>
+                    <i class="fa fa-circle" id="record"></i>
+                </div>
+
+                <div class="btn tr" data-list-button>
+                <i class="fa fa-bars" id="listBtn"></i>
+                </div>
+
+            </footer>
+        </div>
+
+        <aside  data-list>
+            <header>
+            <span class="title">Record List</span>
+            </header>
+
+            <ul class="record-list" id="data_list" data-records>
+            </ul>
+        </aside>
+        <!--Warning-->
+        <div class="modal tr" data-err>
+
+        <div class="errorMsg tr">
+            <i class="fa fa-times" data-close></i>
+
+            <i class="fa fa-times-circle"></i>
+            <span class="errorStatus">Uncaught Synatax Error at code 112</span>
+        </div>
+
+        </div>
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>
